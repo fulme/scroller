@@ -1,0 +1,36 @@
+{
+  "name": "better-scroller",
+  "version": "0.2.0",
+  "description": "high performance scroller",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "gulp build",
+    "compile": "gulp publish",
+    "prepare": "npm run compile"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-es2015-script": "^1.1.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.0",
+    "gulp-connect": "^5.0.0",
+    "gulp-minify": "^2.1.0",
+    "gulp-rollup": "^2.15.0",
+    "gulp-sequence": "^0.4.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fulme/scroller.git"
+  },
+  "keywords": [
+    "scroller",
+    "performance"
+  ],
+  "author": "fulme",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fulme/scroller/issues"
+  },
+  "homepage": "https://github.com/fulme/scroller#readme",
+  "dependencies": {}
+}
