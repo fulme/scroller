@@ -1,9 +1,13 @@
 import Provider from './Provider';
+import debounce from '../utils/debounce';
+import throttle from '../utils/throttle';
 import {
   addEvent
 } from '../utils/eventHandler';
 
 const TIME_REPLACE = 'time replace';
+const resizeDebounce = debounce();
+const scrollThrottle = throttle();
 
 // Number of items to instantiate beyond current view in the scroll direction.
 let RUNWAY_ITEMS = 50;
@@ -44,8 +48,13 @@ function BetterScroller(scroller, source, options = {}) {
   this.loadedItems_ = 0;
   this.requestInProgress_ = false;
 
-  addEvent(this.scroller_, 'scroll', this.onScroll_.bind(this), false);
-  addEvent(window, 'resize', this.onResize_.bind(this), false);
+  addEvent(this.scroller_, 'scroll', () => {
+    scrollThrottle(this.onScroll_.bind(this));
+  }, false);
+
+  addEvent(window, 'resize', () => {
+    resizeDebounce(this.onResize_.bind(this));
+  }, false);
 
   // Create an element to force the scroller to allow scrolling to a certain
   // point.
