@@ -5,7 +5,6 @@ import {
   addEvent
 } from '../utils/eventHandler';
 
-const TIME_REPLACE = 'time replace';
 const resizeDebounce = debounce();
 const scrollThrottle = throttle();
 
@@ -16,7 +15,7 @@ let RUNWAY_ITEMS = 50;
 let RUNWAY_ITEMS_OPPOSITE = 10;
 
 // The number of pixels of additional length to allow scrolling to.
-let SCROLL_RUNWAY = 2000;
+let SCROLL_RUNWAY = 500;
 
 // The animation interval (in ms) for fading in content from tombstones.
 let ANIMATION_DURATION_MS = 200;
@@ -69,6 +68,7 @@ function BetterScroller(scroller, source, options = {}) {
   this.scrollRunway_.style.contain = 'layout';
   this.scrollRunway_.style.transition = 'transform 0.2s';
   this.scroller_.appendChild(this.scrollRunway_);
+
   this.onResize_();
 }
 
@@ -332,7 +332,6 @@ BetterScroller.prototype = {
           anim[0].classList.add('invisible');
           this.tombstones_.push(anim[0]);
           // Tombstone can be recycled now.
-          console.timeEnd(TIME_REPLACE);
         }
       }.bind(this), ANIMATION_DURATION_MS)
     }
@@ -352,7 +351,6 @@ BetterScroller.prototype = {
     if (itemsNeeded <= 0)
       return;
     this.requestInProgress_ = true;
-    console.time(TIME_REPLACE);
     this.source_.fetch(itemsNeeded, this.addContent.bind(this));
   },
 
