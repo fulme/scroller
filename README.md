@@ -56,7 +56,8 @@
   });
 ```
 
-- 调用
+- 调用  
+
 ```html
 <div id="templates">
   <li class="item" data-id="{{id}}">
@@ -84,6 +85,7 @@
 </div>
 <ul id="scroll-container"></ul>
 ```
+
 
 ```css
   #templates {display: none}
