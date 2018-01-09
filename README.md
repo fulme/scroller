@@ -7,12 +7,12 @@
 
 # 实用场景
 - 需要大规模动态加载数据的
-- 想要通过墓碑元素改善加载动效
+- 想要通过墓碑元素改善加载动效的
 - 不需要兼容IE9-的PC/M
 
 # 实现原理
 - 通过`will-change: transform;`开启元素3D加速（目前chrome、safari、firefox支持）
-- 通过`contain: layout;`开启元素的（目前仅chrome支持）
+- 通过`contain: layout;`开启元素的重排隔离优化（目前仅chrome支持）
 - 通过节点的复用，维持页面的节点数量在一个设定的范围，降低内存占用，减少页面重绘、重排的性能开销
 - 通过墓碑节点实现更友好的数据加载动效
 - 数据更新导致滚动位置变化的时候通过记录锚点元素实现滚动定位
@@ -102,7 +102,7 @@
     
     /*safari上开启原生滚动*/
     -webkit-overflow-scrolling: touch;
-    /*chrome重隔离优化*/
+    /*chrome重排隔离优化*/
     contain: layout;
     /*开启3D加速*/
     will-change: transform;
