@@ -6,6 +6,8 @@ let babel = require("gulp-babel");
 let minify = require('gulp-minify');
 let gulpSequence = require('gulp-sequence');
 let connect = require('gulp-connect');
+let zipmd5 = require("gulp-zipmd5");
+let clean = require("gulp-clean");
 
 gulp.task('bundle-umd', function(cb) {
   gulp.src('./src/*.js')
@@ -86,14 +88,30 @@ gulp.task('js:watch', function() {
   });
 });
 
+// 通过arthur发布
+gulp.task("arthur", ["build"], function() {
+  gulp
+    .src("arthur", {read: false})
+    .pipe(clean());
+
+  return gulp
+    .src([
+      "dist/**",
+      "demo/**"
+    ], {base: '.'})
+    .pipe(zipmd5('output.zip'))
+    .pipe(gulp.dest('arthur/'));
+});
+
 // 用于独立文件版本的打包
-gulp.task("build", function () {
+gulp.task("build", function (cb) {
   gulpSequence('bundle-umd', 'babel', 'minify-umd')((err) => {
     if (err) {
       console.log('build fail: ', err);
     } else {
       console.log('build done!');
     }
+    cb();
   });
 });
 

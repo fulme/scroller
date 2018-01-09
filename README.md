@@ -41,7 +41,7 @@
 
 - 全局引用  
 ```html  
-  <script src="//j1.58cdn.com.cn/git/scroller/index.min.js"></script>
+  <script src="//j1.58cdn.com.cn/git/scroller/dist/index.min.js"></script>
 ```
 
 - 模块加载器引用
