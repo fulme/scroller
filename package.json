@@ -1,6 +1,6 @@
 {
   "name": "better-scroller",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "high performance scroller",
   "main": "lib/index.js",
   "scripts": {
